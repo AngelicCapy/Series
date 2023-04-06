@@ -16,27 +16,33 @@ submit.addEventListener('click',
 
 
 
-
-/**
- * Récupère les données de l'api avec Fetch
- * @param {string} lien - lien de l'api
- * @returns {object} - données de l'api
- */
-
 async function getMovie(lien) {
-    const reponse = await fetch(link, { method: 'GET' })
+    /**
+     * Récupère les données de l'api avec Fetch
+     * @param {string} lien - lien de l'api
+     * @returns {object} - données de l'api
+     */
+
+    const reponse = await fetch(lien, { method: 'GET' })
         .then(r => r.json())
         .catch(err => console.log(err));
     displayMovie(reponse);
 }
 
-/**
- * Affiche les données de l'api dans le DOM
- * @param {object} reponse - données de l'api
- * @var {object} data - données de l'api
- * @returns {void} 
- */
+
 function displayMovie(reponse) {
+    /**
+     * Affiche les données de l'api dans le DOM
+     * @param {object} reponse - données de l'api
+     * @var {object} data - données de l'api
+     * @returns {void} 
+     */
     const data = reponse;
+    const titre = document.getElementById('Titre');
+    const poster = document.getElementById('Poster');
+
+    titre.innerHTML = data.Title;
+    poster.src = data.Poster;
     
+
 }
