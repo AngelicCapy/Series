@@ -25,7 +25,7 @@ async function getMovie(lien) {
 
     const reponse = await fetch(lien, { method: 'GET' })
         .then(r => r.json())
-        .catch(err => console.log(err));
+        .catch(err => new Error(err));
     displayMovie(reponse);
 }
 
@@ -35,14 +35,24 @@ function displayMovie(reponse) {
      * Affiche les données de l'api dans le DOM
      * @param {object} reponse - données de l'api
      * @var {object} data - données de l'api
+     * @var {object} titre - élément du DOM
+     * @var {object} poster - élément du DOM
      * @returns {void} 
      */
+
     const data = reponse;
     const titre = document.getElementById('Titre');
     const poster = document.getElementById('Poster');
+    const resumer = document.getElementById('Resumer');
+    const annee = document.getElementById('Annee');
+
 
     titre.innerHTML = data.Title;
     poster.src = data.Poster;
+    resumer.innerHTML = data.Plot;
+    annee.innerHTML = data.Year;
     
+    console.log(data)
+
 
 }
